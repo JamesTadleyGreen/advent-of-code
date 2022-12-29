@@ -2,10 +2,10 @@ from year_2022.day_10.data import test_data, actual_data
 
 
 def check_collision(cycle: int, register: int) -> bool:
-    return abs(register - (cycle % 40)) <= 1
+    return abs(register - (cycle % 40)) <= 1 
 
 
-def capital_letters(data: str) -> str:
+def capital_letters(data: str) -> List[str]:
     operations = data.split("\n")
     output = []
     cycle = 1
