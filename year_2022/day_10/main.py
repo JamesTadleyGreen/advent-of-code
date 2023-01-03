@@ -1,4 +1,5 @@
 from year_2022.day_10.data import test_data, actual_data
+from typing import List
 
 
 def check_collision(cycle: int, register: int) -> bool:
