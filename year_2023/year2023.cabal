@@ -1,0 +1,62 @@
+cabal-version:      2.4
+name:               year2023
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+
+-- The license under which the package is released.
+-- license:
+author:             JamesTadleyGreen
+maintainer:         JamesTadleyGreen@outlook.com
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+library aoc
+  exposed-modules: AOC
+
+  build-depends:
+    , base             ^>=4.17.2.0
+    , text                  ^>=2.0
+
+  hs-source-dirs:  aoc
+
+
+library solutions
+    hs-source-dirs: solutions
+    exposed-modules:
+        Days.Day01,
+        Days.Day02,
+        Days.Day03
+    build-depends:
+        aoc,
+        base ^>=4.17.2.0,
+        string-qq == 0.0.5,
+        split == 0.2.4,
+        text                  ^>=2.0,
+        array == 0.5.*
+    default-language: Haskell2010
+
+executable year2023
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:
+        aoc,
+        solutions,
+        base ^>=4.17.2.0,
+        criterion==1.6.*
+    hs-source-dirs:   app
+    default-language: Haskell2010
