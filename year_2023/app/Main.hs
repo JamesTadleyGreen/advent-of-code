@@ -5,7 +5,8 @@ import Days.Day01
 import Days.Day02
 import Days.Day03
 import Days.Day04
+import Days.Day05
 
 main :: IO ()
-main = defaultMain [bench "test" $ nfIO (print day04)]
--- main = print day04
+-- main = defaultMain [bench "test" $ nfIO (print day04)]
+main = print day05
