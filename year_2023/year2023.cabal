@@ -37,11 +37,12 @@ library solutions
         Days.Day01,
         Days.Day02,
         Days.Day03
+        Days.Day04
     build-depends:
         aoc,
         base ^>=4.17.2.0,
-        string-qq == 0.0.5,
-        split == 0.2.4,
+        string-qq == 0.0.4,
+        split == 0.2.*,
         text                  ^>=2.0,
         array == 0.5.*
     default-language: Haskell2010
