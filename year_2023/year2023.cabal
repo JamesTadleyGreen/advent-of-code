@@ -39,6 +39,7 @@ library solutions
         Days.Day03
         Days.Day04
         Days.Day05
+        Days.Day06
     build-depends:
         aoc,
         base ^>=4.17.2.0,
