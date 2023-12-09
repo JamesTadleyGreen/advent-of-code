@@ -34,7 +34,7 @@ adjacencyList s = (n, k, [k1, k2])
 
 part1 :: (String, Graph) -> Maybe Int
 part1 xs =
-  Just $ 1
+  Just $
 
 part2 :: [(String, Int)] -> Maybe Int
 part2 a = Just 1
