@@ -1,6 +1,6 @@
 {-# LANGUAGE QuasiQuotes #-}
 
-module Days.Day06
+module Days.Day07
   ( day07,
   )
 where

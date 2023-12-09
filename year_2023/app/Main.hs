@@ -12,5 +12,4 @@ import Days.Day09
 
 main :: IO ()
 -- main = defaultMain [bench "test" $ nfIO (print day06)]
-main = print day09
->>>>>>> e44bcf47b5a1903ed682454522c558f64af1cad5
+main = print day07

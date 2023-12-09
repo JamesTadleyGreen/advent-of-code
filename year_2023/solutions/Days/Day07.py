@@ -1,51 +1,70 @@
-{-# LANGUAGE QuasiQuotes #-}
+from typing import Tuple
+from functools import cmp_to_key
 
-module Days.Day08
-  ( day08,
-  )
-where
+def part1(input: str)->int:
+    hands = parse_input(input)
+    hands.sort(key=cmp_to_key(compare_hands))
+    print('\n'.join(['|'.join([str(j) for j in i[0]]) for i in hands]))
+    winnings = 0
+    for i, hand in enumerate(hands):
+        winnings += (i+1) *hand[1]
+    return winnings
 
-import AOC (Solution (..))
-import Data.Char (digitToInt, isDigit)
-import Data.List
-import Data.List.Split
-import Data.Ord
-import Data.String.QQ
-import Data.Text.Internal.Encoding.Utf16 (chr2)
-import Debug.Trace
-import Text.ParserCombinators.ReadP (get)
+def parse_input(input: str) -> list[Tuple[list[int], int]]:
+    output = []
+    for line in input.split('\n'):
+        hand, bid = line.split(' ')
+        hand = [convert_hand(c) for c in hand]
+        output.append((hand, int(bid)))
+    return output
 
-day08 :: Solution
-day08 = Solution input' parseInput part1 part2
+def convert_hand(card: str) -> int:
+    card_lookup = {'T': 10, 'J': 11, 'Q':12, 'K':13, 'A': 14}
+    try:
+        return int(card)
+    except Exception:
+        return card_lookup[card]
 
-parseInput :: String -> String
-parseInput = undefined
 
-part1 :: String -> Maybe Int
-part1 xs =
-  Just $ 1
+def compare_hands(hand1: Tuple[list[int], int], hand2:Tuple[list[int], int])-> int:
+    card_type_difference = card_type(hand1[0]) - card_type(hand2[0])
+    if card_type_difference != 0:
+        return card_type_difference
+    for i in range(len(hand1[0])):
+        difference = hand1[0][i] - hand2[0][i]
+        if difference != 0:
+            return difference
+    return 0
 
-part2 :: String -> Maybe Int
-part2 a = Just 1
+def card_type(hand: list[int]) -> int:
+    card_occourances = {}
+    for card in hand:
+        if card not in card_occourances:
+            card_occourances[card] = 1
+        else:
+            card_occourances[card] += 1
+    card_occourances = sorted(list(card_occourances.values()))[::-1]
+    if card_occourances[0] == 5:
+        return 7
+    if card_occourances[0] == 4:
+        return 6
+    if (card_occourances[0] == 3) and (card_occourances[-1] == 2):
+        return 5
+    if card_occourances[0] == 3:
+        return 4
+    if (card_occourances[0] == 2) and (card_occourances[-1] == 2):
+        return 3
+    if card_occourances[0] == 2:
+        return 2
+    return 1
 
-input :: String
-input =
-  [s|
-RL
+input1 = """32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483"""
 
-AAA = (BBB, CCC)
-BBB = (DDD, EEE)
-CCC = (ZZZ, GGG)
-DDD = (DDD, DDD)
-EEE = (EEE, EEE)
-GGG = (GGG, GGG)
-ZZZ = (ZZZ, ZZZ)
-|]
-
-input' :: String
-input' =
-  [s|
-K8KK6 75
+input = """K8KK6 75
 TAK97 148
 8345K 129
 QT45K 170
@@ -1044,5 +1063,6 @@ KQ97A 472
 24A44 274
 TK2J7 116
 K6666 99
-48845 285
-|]
+48845 285"""
+
+print(part1(input))
